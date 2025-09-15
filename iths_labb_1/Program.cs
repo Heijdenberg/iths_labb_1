@@ -1,39 +1,29 @@
-﻿//string mainString = "29535123p48723487597645723645";
-
+﻿//"29535123p48723487597645723645";
 Console.Write("Enter a string:");
 string mainString = Console.ReadLine();
 long sumOfAllSubstrings = 0;
 
 for (int i = 0; i < mainString.Length; i++)
 {
-    int startIndex = i;
     int endIndex = -1;
 
     for (int ii = mainString.Length - 1; ii > i; ii--)
     {
-        if (!char.IsDigit(mainString[ii]))
-        {
-            endIndex = -1;
-        }
-        else if (mainString[ii] == mainString[i])
+        if (mainString[ii] == mainString[i])
         {
             endIndex = ii;
         }
     }
 
-    if (endIndex != -1)
+    if (endIndex != -1 && Int64.TryParse(mainString.Substring(i, endIndex - i + 1), out long substring))
     {
-        string start = mainString.Substring(0, startIndex);
-        string middle = mainString.Substring(startIndex, endIndex - startIndex + 1);
-        string end = mainString.Substring(endIndex + 1);
+        sumOfAllSubstrings += substring;
 
-        sumOfAllSubstrings += Convert.ToInt64(middle);
-
-        Console.Write($"{start}");
+        Console.Write(mainString.Substring(0, i));
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write(middle);
+        Console.Write(substring);
         Console.ResetColor();
-        Console.Write($"{end}\n");
+        Console.WriteLine(mainString.Substring(endIndex + 1));
     }
 }
 
