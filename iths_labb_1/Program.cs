@@ -1,17 +1,17 @@
-﻿//"29535123p48723487597645723645";
-Console.Write("Enter a string:");
+﻿Console.Write("Enter a string:");
 string mainString = Console.ReadLine();
 long sumOfAllSubstrings = 0;
 
-for (int i = 0; i < mainString.Length; i++)
+for (int i = 0; i < mainString.Length-1; i++)
 {
     int endIndex = -1;
 
-    for (int ii = mainString.Length - 1; ii > i; ii--)
+    for (int ii = i+1; ii < mainString.Length; ii++)
     {
         if (mainString[ii] == mainString[i])
         {
             endIndex = ii;
+            break;
         }
     }
 
@@ -27,4 +27,4 @@ for (int i = 0; i < mainString.Length; i++)
     }
 }
 
-Console.WriteLine($"\nTotal sum of all substrings = {sumOfAllSubstrings}");
+Console.WriteLine($"\nTotal = {sumOfAllSubstrings}");
